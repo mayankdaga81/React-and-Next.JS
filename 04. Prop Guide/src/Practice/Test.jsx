@@ -25,11 +25,23 @@ function Test() {
   }
 
   return (
-    <div>
+    <div className="">
       <label>ENter your input: </label>
       <input type="text" placeholder="ENter the text" ref={inputRef} />
-      <button onClick={addFocus}>Focus Input</button>
-      <button onClick={clearInput}>Clear Input</button>
+      <div className="flex gap-2">
+        <button
+          className="bg-blue-400 text-white cursor-pointer px-4 py-2 rounded-lg shadow-md"
+          onClick={addFocus}
+        >
+          Focus Input
+        </button>
+        <button
+          className="bg-blue-400 text-white cursor-pointer px-4 py-2 rounded-lg shadow-md"
+          onClick={clearInput}
+        >
+          Clear Input
+        </button>
+      </div>
     </div>
   );
 }

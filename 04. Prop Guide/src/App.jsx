@@ -7,9 +7,14 @@ import BasicProps from "./components/BasicProps.jsx";
 import RefProps from "./components/RefProps.jsx";
 import ChildrenProps from "./components/ChildrenProps.jsx";
 import ComplexProps from "./components/ComplexProps.jsx";
-// import ThemeToggler from "./components/ThemeToggler.jsx";
-import Test from "./components/test.jsx";
-import Test2 from "./components/Test2.jsx";
+import ThemeToggler from "./components/ThemeToggler.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
+import { useTheme } from "./hooks/useTheme.jsx";
+import Test from "./Practice/Test.jsx";
+import Test2 from "./Practice/Test2.jsx";
+import Test3 from "./Practice/Test3.jsx";
+import Test4 from "./Practice/Test4.jsx";
+import { Test4Provider } from "./context/Test4Context.jsx";
 
 function Navigation() {
   const isDark = true;
@@ -46,10 +51,12 @@ function Navigation() {
 }
 
 function AppContent() {
-  const isDark = true;
+  const { isDark } = useTheme;
   return (
     <>
-      <div className={"min-h-screen bg-gray-800 "}>
+      <div
+        className={`min-h-screen ${isDark ? "bg-gray-800" : "bg-gradient-tobr from-blue-50 to-purple-50"}`}
+      >
         <Navigation />
         <div className={`mx-auto px-4 py-8 text-white my-0`}>
           <header
@@ -75,14 +82,22 @@ function AppContent() {
             <div id="basic" className="scroll-mt-200">
               <ComplexProps />
             </div>
-            {/* <div id="basic" className="scroll-mt-200">
+            <div id="basic" className="scroll-mt-200">
               <ThemeToggler />
-            </div> */}
+            </div>
             <div id="basic" className="scroll-mt-200">
               <Test />
             </div>
             <div id="basic" className="scroll-mt-200">
               <Test2 />
+            </div>
+            <div id="basic" className="scroll-mt-200">
+              <Test3 />
+            </div>
+            <div id="basic" className="scroll-mt-200">
+              <Test4Provider>
+                <Test4 />
+              </Test4Provider>
             </div>
           </div>
           <footer
@@ -100,8 +115,14 @@ function AppContent() {
   );
 }
 
+// Step 3 from ThemeToggler.jsx ->
+// Here, this is wrapped around <AppContent /> component, so the enitre application will have access to the context. If you want only a specific component should have acess, then we can do so by wrapping the <ThemeContainer/> around that.
 function App() {
-  return <AppContent />;
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
 }
 
 export default App;

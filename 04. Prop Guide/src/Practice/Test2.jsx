@@ -16,7 +16,7 @@ const CustomInput = forwardRef(({ placeholder }, ref) => {
   return (
     <div>
       <input
-        className="border-white px-2 py-2"
+        className=" rounded-lg shadow-md px-2 py-2 text-gray-800 mb-2"
         type="text"
         placeholder={placeholder}
         ref={ref}
@@ -39,11 +39,23 @@ function Test2() {
   }
 
   return (
-    <div>
+    <div className="bg-white p-4 rounded-lg shadow-md ">
       <CustomInput placeholder="Enter input 1" ref={first} />
       <CustomInput ref={second} placeholder="Enter input 2" />
-      <button onClick={focus1}>Focus Input 1</button>
-      <button onClick={focus2}>Focus Input 2</button>
+      <div className="flex gap-2">
+        <button
+          className="bg-blue-400 text-white-800 cursor-pointer px-4 py-2 rounded-lg shadow-md"
+          onClick={focus1}
+        >
+          Focus Input 1
+        </button>
+        <button
+          className="bg-blue-400 text-white-700 cursor-pointer px-4 py-2 rounded-lg shadow-md"
+          onClick={focus2}
+        >
+          Focus Input 2
+        </button>
+      </div>
     </div>
   );
 }
